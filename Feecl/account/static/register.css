@@ -1,0 +1,97 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family:sans-serif;
+  
+  }
+  
+  body {
+    background-color: #000000;
+  }
+  
+  .registerForm {
+    position:absolute;
+    width:380px;
+    height:600px;
+    padding: 30px, 20px;
+    background-color:#FFFFFF;
+    text-align:center;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+  }
+  
+  .registerForm h2{
+    text-align: center;
+    margin: 30px;
+    color: #000000;
+  }
+  
+  .nameForm{
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+  }
+  
+  .passForm{
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+  }
+
+  .passCheckForm{
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+  }
+  
+  .genForm{
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+  }
+  
+  .checkForm{
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+  }
+  
+  
+  .put {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+
+  .registerButton {
+    position:relative;
+    left:0%;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    width:60%;
+    height:40px;
+    background: rgb(0, 0, 0);
+    background-size: 200%;
+    color:#fff;
+    font-weight: bold;
+    border: 1px solid #fff;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+  }
+  
+  .registerButton:hover {
+    background:rgb(255, 255, 255);
+    color:#000;
+    transition:400ms ease all;
+    border: 1px solid #000;
+  }
+  

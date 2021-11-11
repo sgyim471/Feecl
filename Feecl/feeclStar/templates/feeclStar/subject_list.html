@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class='sidebar'>
+    <div class='sideTop'>
+        <ul>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+        </ul>
+    </div>
+    <div class='sideSubject'>
+        <ul>
+            {% for subject in object_list %}
+            <li><a href="{% url 'detail' pk=subject.id %}">{{subject.subject_name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="subject">
+        {% for subject in object_list %}
+        <div class="subject-item" tabindex="0" onclick="location.href='{% url 'detail' pk=subject.id %}';">
+            <ul>
+                <li>{{subject.subject_name}}</li>
+                <li>{{subject.subject_teacher}}</li>
+                <li>{{subject.subject_star}}</li>
+            </ul>
+        </div>
+
+
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}
