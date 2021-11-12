@@ -21,7 +21,7 @@
 <div class="container">
     <div class="subject">
         {% for subject in object_list %}
-        <div class="subject-item" tabindex="0" onclick="location.href='{% url 'detail' pk=subject.id %}';">
+        <div class="subject-item" tabindex="0" onclick="location.href='./detail/{{subject.pk}}';">
             <ul>
                 <li>{{subject.subject_name}}</li>
                 <li>{{subject.subject_teacher}}</li>
