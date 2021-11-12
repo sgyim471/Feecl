@@ -16,6 +16,7 @@ class Subject(models.Model):
 class Comment(models.Model):
     comment_text = models.CharField('Text', max_length=400)
     comment_star = models.PositiveBigIntegerField(default=1,validators=[MinValueValidator(1), MaxValueValidator(5)])
+    updated_at = models.DateTimeField(auto_now=True)
     subject_id = models.ForeignKey('Subject',on_delete=models.CASCADE)
 
     def __str__(self):

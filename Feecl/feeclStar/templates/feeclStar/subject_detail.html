@@ -5,7 +5,14 @@
     {{subject.subject_teacher}}<br>
     {{subject.subject_star}}<br>
     <br><br>
-
-    {{comment.comment_text}}
-    {{comment.comment_star}}
+    <button type="button" class="comment_btn"><a href="{% url 'create' pk=subject.id %}">평가하기</a></button> 
+    <br><br>
+    
+    {% for comment in comment %}
+    <ul>
+        <li>{{comment.comment_text}}</li>
+        <li>{{comment.comment_star}}</li>
+        <li>{{comment.updated_at}}</li>
+    </ul>
+    {% endfor %}
 {%endblock%}

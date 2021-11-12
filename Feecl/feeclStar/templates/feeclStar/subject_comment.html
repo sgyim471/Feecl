@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{%block content%}
+    <form acton="." method="POST">
+    {% csrf_token %}
+      <div class="container2">
+        <div class="star-widget">
+          <input type="radio" name="comment_star" value="5" id="rate-5">
+          <label for="rate-5" class="fas fa-star"></label>
+          <input type="radio" name="comment_star" value="4" id="rate-4">
+          <label for="rate-4" class="fas fa-star"></label>
+          <input type="radio" name="comment_star" value="3" id="rate-3">
+          <label for="rate-3" class="fas fa-star"></label>
+          <input type="radio" name="comment_star" value="2" id="rate-2">
+          <label for="rate-2" class="fas fa-star"></label>
+          <input type="radio" name="comment_star" value="1" id="rate-1">
+          <label for="rate-1" class="fas fa-star"></label>
+        </div>
+        <br>
+      내용: <input type='text' id='contents' name='comment_text' class="box">
+      <br>
+      <button type="submit" id='submit' calss='submit2' value = "제출">
+      
+      <p style="color: red;">{{error}}</p>
+      </div>
+  </form>
+{%endblock%}
