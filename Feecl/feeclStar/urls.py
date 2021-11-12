@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', SubjectListView.as_view(),name='list'),
-    path('detail/<int:pk>/', SubjectDetailView.as_view(),name='detail'),
+    path('detail/<int:pk>/', detail,name='detail'),
     path('logout/',views.logout,name='logout'),
 ]
