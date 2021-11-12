@@ -11,7 +11,7 @@ class SubjectListView(ListView):
 def detail(request,pk):
     subject = Subject.objects.get(pk=pk)
     comment = Comment.objects.get(subject_id= pk)
-    return render(request,'testapp/subject_detail.html',{'subject':subject,'comment':comment})
+    return render(request,'feeclStar/subject_detail.html',{'subject':subject,'comment':comment})
 
 def logout(request):
     request.session.pop('user')
