@@ -10,9 +10,17 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 class SubjectListView(ListView):
     model = Subject
 
+    
 def detail(request,pk):
     subject = Subject.objects.get(pk=pk)
-    comment = Comment.objects.all()
+    comment = Comment.objects.filter(subject_id=subject)
+    total = 0
+    for i in comment:
+        total += i.comment_star
+    if total != 0:
+        subject_star = total/len(comment)
+        subject.subject_star = round(subject_star,2)
+        subject.save()
     return render(request,'feeclStar/subject_detail.html',{'subject':subject,'comment':comment})
 
 def create(request,pk):
@@ -27,6 +35,7 @@ def create(request,pk):
             write = Comment(comment_text=comment_text, comment_star=comment_star,subject_id = subject_id)
             write.save()
             return HttpResponseRedirect(reverse('detail',kwargs={'pk':pk}))
+
 
 
         return render(request,'feeclStar/subject_comment.html',res_data)
