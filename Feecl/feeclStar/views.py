@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views.generic.list import ListView 
 from .models import Subject,Comment
+from account.models import User
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse
 from django.views.generic.detail import DetailView
@@ -27,12 +28,16 @@ def create(request,pk):
     if request.method == "POST":
         comment_text = request.POST.get('comment_text',None)
         comment_star = request.POST.get('comment_star',None)
+        comment_starWidth = int(comment_star)*20
+        writer_id = request.session['user']
+        writerInfo = User.objects.get(id = writer_id)
+        writer_generation = writerInfo.generation
         subject_id = Subject.objects.get(id = pk)
         res_data={}
         if not(comment_star and comment_text):
             res_data['error'] = '모두 입력해주세요'
         else:
-            write = Comment(comment_text=comment_text, comment_star=comment_star,subject_id = subject_id)
+            write = Comment(comment_text=comment_text, comment_star=comment_star,subject_id = subject_id,comment_starWidth = comment_starWidth,writer_id = writer_id,writer_generation = writer_generation)
             write.save()
             return HttpResponseRedirect(reverse('detail',kwargs={'pk':pk}))
 

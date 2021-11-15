@@ -16,8 +16,11 @@ class Subject(models.Model):
 class Comment(models.Model):
     comment_text = models.CharField('Text', max_length=400)
     comment_star = models.PositiveBigIntegerField(default=1,validators=[MinValueValidator(1), MaxValueValidator(5)])
+    comment_starWidth = models.PositiveIntegerField(default=1)
     updated_at = models.DateTimeField(auto_now=True)
     subject_id = models.ForeignKey('Subject',on_delete=models.CASCADE)
+    writer_id = models.PositiveIntegerField(default=1)
+    writer_generation = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return '별점 : ' + str(self.comment_star)

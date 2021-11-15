@@ -25,7 +25,11 @@
             <ul>
                 <li>{{subject.subject_name}}</li>
                 <li>{{subject.subject_teacher}}</li>
+                {% if subject.subject_star == 0%}
+                <li>-</li>
+                {%else%}
                 <li>{{subject.subject_star}}</li>
+                {%endif%}
             </ul>
         </div>
 
