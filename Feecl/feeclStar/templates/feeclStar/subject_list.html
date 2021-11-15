@@ -4,15 +4,19 @@
 <div class='sidebar'>
     <div class='sideTop'>
         <ul>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
+            <li><a class='not_now' href="http://127.0.0.1:8000/starRating/1/">1</a></li>
+            <li><a class='now' href="http://127.0.0.1:8000/starRating/2/">2</a></li>
+            <li><a class='not_now' href="http://127.0.0.1:8000/starRating/3/">3</a></li>
         </ul>
     </div>
     <div class='sideSubject'>
         <ul>
-            {% for subject in object_list %}
-            <li><a href="{% url 'detail' pk=subject.id %}">{{subject.subject_name}}</a></li>
+            {% for subject in subject %}
+                {%if writer_id != 0%}
+                <li><a href='./detail/{{subject.pk}}'>{{subject.subject_name}}</a></li>
+                {%elif writer_id == 0%}
+                <li><a href=""><p onclick="alert('회원만 접근할 수 있는 페이지입니다')">{{subject.subject_name}}</p></a></li>
+                {%endif%}
             {% endfor %}
         </ul>
     </div>
@@ -20,7 +24,8 @@
 
 <div class="container">
     <div class="subject">
-        {% for subject in object_list %}
+        {% for subject in subject%}
+        {%if writer_id != 0%}
         <div class="subject-item" tabindex="0" onclick="location.href='./detail/{{subject.pk}}';">
             <ul>
                 <li>{{subject.subject_name}}</li>
@@ -32,8 +37,19 @@
                 {%endif%}
             </ul>
         </div>
-
-
+        {%elif writer_id == 0%}
+        <div class="subject-item" tabindex="0" onclick="alert('회원만 접근할 수 있는 페이지입니다')">
+            <ul>
+                <li>{{subject.subject_name}}</li>
+                <li>{{subject.subject_teacher}}</li>
+                {% if subject.subject_star == 0%}
+                <li>-</li>
+                {%else%}
+                <li>{{subject.subject_star}}</li>
+                {%endif%}
+            </ul>
+        </div>
+        {%endif%}
         {% endfor %}
     </div>
 </div>

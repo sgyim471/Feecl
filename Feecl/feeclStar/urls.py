@@ -1,12 +1,12 @@
 from django.urls import path
 from django.conf.urls import url
-from .views import *
-from . import views
+from feeclStar.views import *
 
 urlpatterns = [
-    path('', SubjectListView.as_view(),name='list'),
+    path('', subjectList,name='list'),
     path('detail/<int:pk>/', detail,name='detail'),
     path('create/<int:pk>', create,name='create'),
-    path('logout/',views.logout,name='logout'),
+    path('delete/<int:pk>/<int:pk2>', delete,name='delete'), 
+    path('logout/',logout,name='logout'),
 ]
 

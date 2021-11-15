@@ -8,11 +8,15 @@ from django.views.generic.detail import DetailView
 from django.http.response import HttpResponse, HttpResponseRedirect
 
 
-class SubjectListView(ListView):
-    model = Subject
+def subjectList(request):
+    subject = Subject.objects.all()
+    writer_id = request.session['user']
+    return render(request,'feeclStar/subject_list.html',{'subject':subject,'writer_id':writer_id})
+
 
     
 def detail(request,pk):
+    writer_id = request.session['user']
     subject = Subject.objects.get(pk=pk)
     comment = Comment.objects.filter(subject_id=subject)
     total = 0
@@ -22,26 +26,41 @@ def detail(request,pk):
         subject_star = total/len(comment)
         subject.subject_star = round(subject_star,2)
         subject.save()
-    return render(request,'feeclStar/subject_detail.html',{'subject':subject,'comment':comment})
+    elif total == 0:
+        subject.subject_star = 0
+        subject.save()
+    return render(request,'feeclStar/subject_detail.html',{'subject':subject,'comment':comment,'pk':writer_id})
+
+def delete(request,pk,pk2):
+    Comment.objects.filter(id=pk).delete()
+    return HttpResponseRedirect(reverse('detail',kwargs={'pk':pk2}))
 
 def create(request,pk):
     if request.method == "POST":
         comment_text = request.POST.get('comment_text',None)
         comment_star = request.POST.get('comment_star',None)
-        comment_starWidth = int(comment_star)*20
+        
+        if comment_star != None:
+            comment_starWidth = int(comment_star)*20
+        
         writer_id = request.session['user']
         writerInfo = User.objects.get(id = writer_id)
         writer_generation = writerInfo.generation
         subject_id = Subject.objects.get(id = pk)
         res_data={}
+        try:
+            CommentExist = Comment.objects.get(writer_id = writer_id)
+            if CommentExist.subject_id.id == pk:
+                res_data['error'] = '이미 리뷰를 남긴 과목입니다'
+                return render(request,'feeclStar/subject_comment.html',res_data)
+        except:
+            pass
         if not(comment_star and comment_text):
             res_data['error'] = '모두 입력해주세요'
         else:
             write = Comment(comment_text=comment_text, comment_star=comment_star,subject_id = subject_id,comment_starWidth = comment_starWidth,writer_id = writer_id,writer_generation = writer_generation)
             write.save()
             return HttpResponseRedirect(reverse('detail',kwargs={'pk':pk}))
-
-
 
         return render(request,'feeclStar/subject_comment.html',res_data)
     

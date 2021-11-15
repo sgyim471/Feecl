@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'feeclStar',
+    'feeclStar_1st',
+    'feeclStar_3rd',
+    
 ]
 
 MIDDLEWARE = [

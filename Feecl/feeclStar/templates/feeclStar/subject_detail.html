@@ -5,7 +5,11 @@
         <div class='about'>
             <ul>
                 <li class='subjectName'>{{subject.subject_name}}</li>
+                {%if subject.subject_star != 0%}
                 <li class='subjectStar'>{{subject.subject_star}}</li>
+                {%else%}
+                <li class='subjectStar'>💬</li>
+                {%endif%}
             </ul>
             <p>교사 : {{subject.subject_teacher}}</p>
         </div>
@@ -14,7 +18,7 @@
     <div class='under_title'>
         <div class='class_time'>
             <img class='clock_image' src='https://imgur.com/49nZRgR.png'>
-            <p>3h</p>
+            <p>{{subject.subject_credit}}h</p>
         </div>
         <div class='comment_count'>
             <img  class='comment_image' src='https://imgur.com/uTDdJkG.png'>
@@ -50,10 +54,14 @@
                         </div>
                         <ul class='comments'>  
                             <li>{{comment.writer_generation}}기</li>
-                            <li>{{comment.updated_at|date:'Y.m.d'}}</li>    
+                            <li>{{comment.updated_at|date:'Y.m.d'}}</li> 
                         </ul>
                     </div>
+                    {%if pk == comment.writer_id%}
+                    <a href="{%url 'delete' pk=comment.id pk2=subject.id%}" class='delete_button'><img src='https://imgur.com/VcDwEXL.png'></a>
+                    {%endif%}
                 </div>
+                
                 <p>{{comment.comment_text}}</p>
             </div>
             {% endfor %}

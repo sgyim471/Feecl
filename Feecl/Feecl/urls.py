@@ -19,5 +19,7 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/',include('account.urls')),
-    path('starRating/',include('feeclStar.urls')),
+    path('starRating/2/',include('feeclStar.urls')),
+    path('starRating/1/',include('feeclStar_1st.urls')),
+    path('starRating/3/',include('feeclStar_3rd.urls')),
 ]

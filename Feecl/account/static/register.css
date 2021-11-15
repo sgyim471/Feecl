@@ -2,12 +2,18 @@
     margin: 0px;
     padding: 0px;
     text-decoration: none;
-    font-family:sans-serif;
+    font-family: 'SEBANG_Gothic_Bold';
   
   }
   
+  @font-face {
+    font-family: 'SEBANG_Gothic_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
   body {
-    background-color: #000000;
+    background-color: #9ED0BA;
   }
   
   .registerForm {
@@ -15,7 +21,7 @@
     width:380px;
     height:600px;
     padding: 30px, 20px;
-    background-color:#FFFFFF;
+    background-color:#EAEAEA;
     text-align:center;
     top:50%;
     left:50%;
@@ -26,7 +32,7 @@
   .registerForm h2{
     text-align: center;
     margin: 30px;
-    color: #000000;
+    color: #478497;
   }
   
   .nameForm{
@@ -76,9 +82,10 @@
     left:0%;
     margin-top: 15px;
     margin-bottom: 25px;
-    width:60%;
-    height:40px;
-    background: rgb(0, 0, 0);
+    font-size: 1em;
+    width:50%;
+    height:50px;
+    background: #478497;
     background-size: 200%;
     color:#fff;
     font-weight: bold;
@@ -86,12 +93,12 @@
     cursor:pointer;
     transition: 0.4s;
     display:inline;
+    border-radius: 10px;
   }
   
   .registerButton:hover {
-    background:rgb(255, 255, 255);
-    color:#000;
+    background:#2A515A;
+    color:#fff;
     transition:400ms ease all;
-    border: 1px solid #000;
   }
   
